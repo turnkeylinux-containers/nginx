@@ -12,5 +12,5 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker pull qrntz/keyhole-builder:master
           tar czf - . | docker run --name keyhole -i qrntz/keyhole-builder:master
-          docker cp keyhole:keyhole .
+          docker cp keyhole:/go/src/keyhole/keyhole .
           ls -lah
