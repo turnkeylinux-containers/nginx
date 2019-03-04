@@ -3,7 +3,7 @@ version: 2
 jobs:
   build:
     docker:
-      - image: qrntz/tklc:master
+      - image: qrntz/tklc:circleci
     working_directory: ~/product
     steps:
       - checkout
