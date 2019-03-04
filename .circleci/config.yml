@@ -8,6 +8,8 @@ jobs:
     steps:
       - checkout
       - setup_remote_docker
-      - run: docker login -u $DOCKER_USER -p $DOCKER_PASS
-      - run: tar czf - . | docker run --rm -i qrntz/keyhole-builder:master > keyhole.tar.gz
-      - run: ls -lah
+      - run: |
+          docker login -u $DOCKER_USER -p $DOCKER_PASS
+          docker pull qrntz/keyhole-builder:master
+          tar czf - . | docker run --rm -i qrntz/keyhole-builder:master > keyhole.tar.gz
+          ls -lah
