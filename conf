@@ -1,0 +1,5 @@
+#!/bin/bash
+set -exuo pipefail
+apt-get install nginx inotify-tools
+mkdir -p /var/www/html
+chown -R www-data:www-data /var/www/html /var/log/nginx

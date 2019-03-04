@@ -1,0 +1,21 @@
+{
+    "build": {
+        "KEEP_USER": "www-data"
+    },
+    "meta": {
+        "name": "nginx",
+        "version": "1.14.0",
+        "containers": [
+            {
+                "name": "nginx",
+                "version": "1.14.0",
+                "ports": {
+                    "80": "tcp",
+                    "443": "tcp"
+                },
+                "cpu": 256,
+                "ram": 512
+            }
+        ]
+    }
+}
