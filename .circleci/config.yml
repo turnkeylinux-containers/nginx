@@ -1,0 +1,11 @@
+version: 2
+
+jobs:
+  build:
+    docker:
+      - image: qrntz/tklc:master
+    working_directory: ~/product
+    steps:
+      - checkout
+      - run: tar czf - . | docker run --rm -i qrntz/keyhole-builder:master > keyhole.tar.gz
+      - run: ls -lah
