@@ -9,11 +9,12 @@ jobs:
       - checkout
       - setup_remote_docker
       - run: |
+          mkdir -p build
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker pull qrntz/keyhole-builder:master
+          cp overlay build/overlay
           tar czf - . | docker run --name keyhole -i qrntz/keyhole-builder:master
           docker cp keyhole:/go/src/keyhole/keyhole ./build/overlay/keyhole
           cat /usr/share/tklc/skel/Dockerfile.head Dockerfile.tail > ./build/Dockerfile
-          cp overlay build/overlay
           docker build -t qrntz/nginx:test build
           docker push qrntz/nginx:test
