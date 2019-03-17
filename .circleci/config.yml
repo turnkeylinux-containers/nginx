@@ -13,6 +13,7 @@ jobs:
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker pull qrntz/keyhole-builder:master
           cp -r overlay build/overlay
+          cp /usr/share/tklc/conf/* build/overlay/usr/share/tklc/conf/
           tar czf - . | docker run --name keyhole -i qrntz/keyhole-builder:master
           docker cp keyhole:/go/src/keyhole/keyhole ./build/overlay/keyhole
           cat /usr/share/tklc/skel/Dockerfile.head Dockerfile.tail > ./build/Dockerfile
