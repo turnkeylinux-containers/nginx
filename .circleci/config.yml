@@ -16,9 +16,9 @@ jobs:
             jq -r '"export PRODUCT_VERSION=" + .meta.version' manifest.json >> $BASH_ENV
             jq -r '.build | to_entries | .[] | ("--build-arg=" + .key + "=" + .value)' manifest.json | tr '\n' ' ' | sed "s/^/export BUILD_ARGS='/; s/ $/'/" >> $BASH_ENV
       - run: |
-          mkdir -p build
           docker login -u $DOCKER_USER -p $DOCKER_PASS
           docker pull qrntz/keyhole-builder:master
+          mkdir -p build
           cp -r overlay build/overlay
           cp /usr/share/tklc/conf/* build/overlay/usr/share/tklc/conf/
           tar czf - . | docker run --name keyhole -i qrntz/keyhole-builder:master
