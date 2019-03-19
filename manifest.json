@@ -1,14 +1,14 @@
 {
-    "build": {
-        "KEEP_USER": "www-data"
-    },
     "meta": {
-        "name": "nginx",
-        "version": "1.14.0",
+        "build_args": {
+            "PRODUCT_NAME": "nginx",
+            "PRODUCT_VERSION": "1.14.2",
+            "KEEP_USER": "www-data"
+        },
         "containers": [
             {
                 "name": "nginx",
-                "version": "1.14.0",
+                "version": "1.14.2",
                 "ports": {
                     "80": "tcp",
                     "443": "tcp"
