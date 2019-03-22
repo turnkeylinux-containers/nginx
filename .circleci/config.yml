@@ -27,3 +27,10 @@ jobs:
           cat /usr/share/tklc/skel/Dockerfile.head Dockerfile.tail > ./build/Dockerfile
           docker build -t qrntz/$PRODUCT_NAME:$PRODUCT_VERSION $BUILD_ARGS build
           docker push qrntz/$PRODUCT_NAME:$PRODUCT_VERSION
+
+workflows:
+  version: 2
+  my-workflow:
+    jobs:
+      - build:
+          context: "docker hub"
