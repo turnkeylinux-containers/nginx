@@ -35,6 +35,10 @@ jobs:
               docker tag "$REPO/$PRODUCT_NAME:$PRODUCT_VERSION" "$REPO/$PRODUCT_NAME:latest"
               docker push "$REPO/$PRODUCT_NAME:latest"
             fi
+      - run:
+          name: Test deployment
+          command: |
+            jq -f /usr/share/tklc/templates/ecs.jq manifest.json
 
 workflows:
   version: 2
