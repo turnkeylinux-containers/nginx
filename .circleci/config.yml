@@ -38,7 +38,7 @@ jobs:
       - run:
           name: Test deployment
           command: |
-            jq -f /usr/share/tklc/templates/ecs.jq manifest.json
+            jq -f /usr/share/tklc/templates/ecs.jq manifest.json | jq -scf /usr/share/tklc/templates/cf.jq
 
 workflows:
   version: 2
