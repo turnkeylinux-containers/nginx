@@ -41,8 +41,7 @@ jobs:
             aws cloudformation create-stack \
             --stack-name "$PRODUCT_NAME-$PRODUCT_VERSION-$CIRCLE_BUILD_NUM" \
             --parameters 'ParameterKey=KeyName,ParameterValue=test' \
-            --template-body "$( jq -f /usr/share/tklc/templates/ecs.jq manifest.json
-                | jq -scf /usr/share/tklc/templates/cf.jq )"
+            --template-body "$( jq -f /usr/share/tklc/templates/ecs.jq manifest.json | jq -scf /usr/share/tklc/templates/cf.jq )"
 
 workflows:
   version: 2
