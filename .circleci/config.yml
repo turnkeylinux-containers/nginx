@@ -45,7 +45,8 @@ jobs:
             --parameters 'ParameterKey=KeyName,ParameterValue=test' \
             --template-body "$( jq -f /usr/share/tklc/templates/ecs.jq manifest.json | jq -scf /usr/share/tklc/templates/cf.jq )"
             aws cloudformation wait stack-create-complete --stack-name "$STACK_NAME"
-            curl $( aws cloudformation describe-stacks --stack-name "$STACK_NAME" --output text --query "Stacks[].Outputs[?OutputKey == 'ExternalELBUrl'].OutputValue" )
+            curl $( aws cloudformation describe-stacks --stack-name "$STACK_NAME" --output text --query "Stacks[].Outputs[?OutputKey == 'ExternalELBUrl'].OutputValue" ) \
+            | grep -q 'Welcome to Nginx!'
             aws cloudformation delete-stack --stack-name "$PRODUCT_NAME-$CIRCLE_BUILD_NUM"
             aws cloudformation wait stack-delete-complete --stack-name "$PRODUCT_NAME-$CIRCLE_BUILD_NUM"
 
